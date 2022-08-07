@@ -4,7 +4,7 @@
 [![Download](https://img.shields.io/github/v/release/celetor/tvbox-build?color=orange&logoColor=orange&label=Download&logo=DocuSign)](https://github.com/celetor/tvbox-build/releases/latest) 
 [![Total](https://shields.io/github/downloads/celetor/tvbox-build/total?logo=Bookmeter&label=Counts&logoColor=blue&color=blue)](https://github.com/celetor/tvbox-build/releases)
 
-+ Updated Time: null
++ Update Time: null
 + [蓝奏云](https://wwi.lanzoup.com/b0dah3rlc) 密码:celetor
 
 ## Credits
