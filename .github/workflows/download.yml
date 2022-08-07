@@ -1,0 +1,36 @@
+name: Download
+
+on:
+  schedule:
+    - cron: 30 0,12 * * *
+  workflow_dispatch:
+
+jobs:
+  work:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Download
+        run: |
+          curl https://raw.githubusercontent.com/HenryQinUp/JK/master/Q2WForever.json > Q2WForever.json
+          # 盘搜删掉
+          sed -i "/csp_AliPanSou/c\\ " ./Q2WForever.json
+          # 小纸条删掉
+          sed -i "/csp_GitCafe/c\\ " ./Q2WForever.json
+          # 找资源
+          sed -i "/csp_FindZY/c\\ " ./Q2WForever.json
+          # 推送
+          sed -i "/csp_PushAgent/c\\ " ./Q2WForever.json
+
+      - name: Commit And Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "update src"
+          git push origin main
