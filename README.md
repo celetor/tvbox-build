@@ -5,7 +5,7 @@
 [![Total](https://shields.io/github/downloads/celetor/tvbox-build/total?logo=Bookmeter&label=Counts&logoColor=blue&color=blue)](https://github.com/celetor/tvbox-build/releases)
 
 + Update Time: 2022/08/06 17:56
-+ [蓝奏云](https://wwi.lanzoup.com/b0dah3rlc) 密码:celetor
++ [蓝奏云](https://wwi.lanzoup.com/b0dah3rlc) 密码: `celetor`
 
 ## Credits
 This repo relies on the following third-party projects:
