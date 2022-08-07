@@ -18,14 +18,16 @@ jobs:
       - name: Download
         run: |
           curl https://raw.githubusercontent.com/HenryQinUp/JK/master/Q2WForever.json > Q2WForever.json
-          # 盘搜删掉
+          # 删掉盘搜
           sed -i "/csp_AliPanSou/c\\ " ./Q2WForever.json
-          # 小纸条删掉
+          # 删掉小纸条
           sed -i "/csp_GitCafe/c\\ " ./Q2WForever.json
-          # 找资源
+          # 删掉找资源
           sed -i "/csp_FindZY/c\\ " ./Q2WForever.json
-          # 推送
+          # 删掉推送
           sed -i "/csp_PushAgent/c\\ " ./Q2WForever.json
+          # 更新时间
+          sed -i "/Q2WForever.json/c\\// update time: $(date -u -d '+8 hour' '+%Y.%m.%d %H:%M:%S')" ./Q2WForever.json
 
       - name: Commit And Push
         run: |
