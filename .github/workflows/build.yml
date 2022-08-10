@@ -115,7 +115,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit And Push
-        if: ${{ env.commit && env.ylogin }}
+        if: ${{ env.commit }}
         working-directory: actions
         run: |
           git config --local user.name "github-actions[bot]"
@@ -126,7 +126,7 @@ jobs:
           git push origin main
 
       - name: Upload App To Lanzou
-        if: ${{ env.commit }}
+        if: ${{ env.commit && env.ylogin }}
         run: |
           python3 ${{ github.workspace }}/actions/.github/scripts/lzy_web.py \
           "${{ github.workspace }}/TVBoxOSC/apk/TVBox_release_${{ env.tag }}.apk" "$LANZOU_FOLDER_ID"
