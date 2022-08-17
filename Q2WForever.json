@@ -1,7 +1,7 @@
-// update time: 2022.08.07 20:58:59
+// update time: 2022.08.17 09:03:52
 {
-  "spider":"https://henryqinup.github.io/JK/HenryQin.jar;md5;2fa165c9aa72ada6ab74a3dedb58ff6b",
-  "lives":[{"group":"redirect","channels":[{"name":"live","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9oZW5yeXFpbnVwLmdpdGh1Yi5pby9KSy9NeURJWS9saXZlLnR4dA=="]}]}],
+  "spider":"https://henryqinup.github.io/JK/HenryQin.jar;md5;06ed1a662fc19e4ea22f60f02770f4b6",
+  "lives":[{"group":"redirect","channels":[{"name":"live","urls":["proxy://do=live&type=txt&ext=aHR0cHM6Ly9naXRlYS5jb20vcWlhb2ppL2phci9yYXcvYnJhbmNoL21haW4vemIudHh0"]}]}],
   "wallpaper":"http://www.kf666888.cn/api/tvbox/img",
   
 "sites":[
@@ -17,7 +17,7 @@
   "searchable": 1,
   "ext": ""
 },
-{"key":"293视频","name":"🍋293视频","type":3,"api":"csp_SP293","searchable":1,"quickSearch":1,"filterable":1,"ext":""},
+
 {"key":"Smdyy_spider"        ,"name":"🍋神马影视","api":"csp_Smdyy","type":3,"filterable":1,"quickSearch":1,"searchable":1,"ext":""},
 {"key":"小苹果","name":"🍋小苹果","type":3,"api":"csp_LiteApple","searchable":1,"quickSearch":1,"filterable":1},
 {"key":"追剧喵","name":"🍋追剧喵","type":3,"api":"csp_ZJMiao","searchable":1,"quickSearch":1,"filterable":1},
