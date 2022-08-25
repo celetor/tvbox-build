@@ -63,7 +63,9 @@ def upload_file(file_dir, folder_id):
         if retry_time > retry_time_max:
             return False
         try:
-            res = requests.post(url_upload, data=post_data, files=files, headers=headers, cookies=cookie, timeout=3600).json()
+            response = requests.post(url_upload, data=post_data, files=files, headers=headers, cookies=cookie, timeout=3600)
+            log(f'response -> {response.text}')
+            res = response.json()
             log(f"{file_dir} -> {res['info']}")
             return res['zt'] == 1
         except Exception as e:
