@@ -56,9 +56,20 @@ def upload_file(file_dir, folder_id):
         "name": file_name,
     }
     files = {'upload_file': (file_name, open(file_dir, "rb"), 'application/octet-stream')}
-    res = requests.post(url_upload, data=post_data, files=files, headers=headers, cookies=cookie, timeout=3600).json()
-    log(f"{file_dir} -> {res['info']}")
-    return res['zt'] == 1
+
+    retry_time = 0
+    retry_time_max = 2  # 最大重试次数
+    while True:
+        if retry_time > retry_time_max:
+            return False
+        try:
+            res = requests.post(url_upload, data=post_data, files=files, headers=headers, cookies=cookie, timeout=3600).json()
+            log(f"{file_dir} -> {res['info']}")
+            return res['zt'] == 1
+        except Exception as e:
+            log(f'请求异常: 重试{retry_time}次,{e}')
+            retry_time += 1
+            time.sleep(2)
 
 
 # 上传文件夹内的文件
