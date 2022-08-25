@@ -1,4 +1,4 @@
-import requests, os, datetime, sys
+import requests, os, datetime, sys, time
 
 # Cookie 中 phpdisk_info 的值
 cookie_phpdisk_info = os.environ.get('phpdisk_info')
