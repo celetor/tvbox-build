@@ -138,7 +138,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git pull
+          # git pull
           # sed -i "/Update Time/c\\+ Update Time: ${{ env.update_time }}" README.md
           # sed -i "/${{ matrix.userName }}/s#Updated: [a-zA-Z0-9]*#Updated: ${{ env.commit }}#" README.md
           echo "${{ env.commit }}" > ./log/${{ matrix.userName }}.txt
