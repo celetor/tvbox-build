@@ -22,6 +22,7 @@ jobs:
             repoUrl: https://github.com/takagen99/Box
             branchName: main
     env:
+      local_xwalk: true
       # 登录蓝奏云后在控制台运行document.cookie
       ylogin: ${{ secrets.YLOGIN }}
       phpdisk_info: ${{ secrets.PHPDISK_INFO }}
@@ -84,16 +85,14 @@ jobs:
           sed -i "/applicationId/c\\applicationId '${{ matrix.userName }}.tvbox.osc'" ./app/build.gradle
 
       - name: xwalk_shared_library Fix
-        if: ${{ env.commit }}
+        if: ${{ env.commit }} && ${{ env.local_xwalk == 'true' }}
         working-directory: TVBoxOSC
         run: |
-          if ! grep -q "org.xwalk" ./app/build.gradle; then
-            echo 'copy library'
-            cp -f ${{ github.workspace }}/actions/.github/scripts/crosswalk-shared-23.53.589.4.aar ./app/libs/crosswalk-shared-23.53.589.4.aar
-            # lineNo=$(awk '/org.xwalk/{ print NR; exit }' ./app/build.gradle)
-            sed -i "/org.xwalk/i\    implementation files('libs\\\\\\\\crosswalk-shared-23.53.589.4.aar')" ./app/build.gradle
-            sed -i '/org.xwalk/,/^\s*}$/d' ./app/build.gradle
-          fi
+          echo 'copy library'
+          cp -f ${{ github.workspace }}/actions/.github/scripts/crosswalk-shared-23.53.589.4.aar ./app/libs/crosswalk-shared-23.53.589.4.aar
+          # lineNo=$(awk '/org.xwalk/{ print NR; exit }' ./app/build.gradle)
+          sed -i "/org.xwalk/i\    implementation files('libs\\\\\\\\crosswalk-shared-23.53.589.4.aar')" ./app/build.gradle
+          sed -i '/org.xwalk/,/^\s*}$/d' ./app/build.gradle
 
       - name: Build With Gradle
         if: ${{ env.commit }}
