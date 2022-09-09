@@ -85,7 +85,7 @@ jobs:
           sed -i "/applicationId/c\\applicationId '${{ matrix.userName }}.tvbox.osc'" ./app/build.gradle
 
       - name: xwalk_shared_library Fix
-        if: ${{ env.commit }} && ${{ env.local_xwalk == 'true' }}
+        if: ${{ env.commit && env.local_xwalk == 'true'}}
         working-directory: TVBoxOSC
         run: |
           echo 'copy library'
