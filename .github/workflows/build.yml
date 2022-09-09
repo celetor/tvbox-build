@@ -3,9 +3,9 @@ name: Build
 on:
   schedule:
     - cron: 10,40 0-15,23 * * *
-#  push:
-#    branches:
-#      - main
+  #  push:
+  #    branches:
+  #      - main
   workflow_dispatch:
 
 jobs:
@@ -29,10 +29,10 @@ jobs:
       lanzou_folder_id: 5848262
 
     steps:
-#      - name: IP
-#        run: |
-#          ip=`curl -sL http://ip.42.pl/raw`
-#          echo "server ip: $ip"
+      #      - name: IP
+      #        run: |
+      #          ip=`curl -sL http://ip.42.pl/raw`
+      #          echo "server ip: $ip"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -82,6 +82,17 @@ jobs:
           sed -i "/versionCode/c\\versionCode ${version_code}" ./app/build.gradle
           sed -i "/versionName/c\\versionName '${{ env.tag }}'" ./app/build.gradle
           sed -i "/applicationId/c\\applicationId '${{ matrix.userName }}.tvbox.osc'" ./app/build.gradle
+
+      - name: xwalk_shared_library Fix
+        if: ${{ env.commit }}
+        working-directory: TVBoxOSC
+        run: |
+          if ! grep -q "implementation('org.xwalk:xwalk_shared_library:23.53.589.4')" ./app/build.gradle; then
+            cp -f ${{ github.workspace }}/actions/.github/scripts/crosswalk-shared-23.53.589.4.aar ./app/libs/crosswalk-shared-23.53.589.4.aar
+            # lineNo=$(awk '/org.xwalk/{ print NR; exit }' ./app/build.gradle)
+            sed -i "/org.xwalk/i\    implementation files('libs\\\\\\\\crosswalk-shared-23.53.589.4.aar')" ./app/build.gradle
+            sed -i '/org.xwalk/,/^\s*}$/d' ./app/build.gradle
+          fi
 
       - name: Build With Gradle
         if: ${{ env.commit }}
