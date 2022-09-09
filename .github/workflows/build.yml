@@ -3,9 +3,9 @@ name: Build
 on:
   schedule:
     - cron: 10,40 0-15,23 * * *
-  #  push:
-  #    branches:
-  #      - main
+#  push:
+#    branches:
+#      - main
   workflow_dispatch:
 
 jobs:
@@ -29,10 +29,10 @@ jobs:
       lanzou_folder_id: 5848262
 
     steps:
-      #      - name: IP
-      #        run: |
-      #          ip=`curl -sL http://ip.42.pl/raw`
-      #          echo "server ip: $ip"
+#      - name: IP
+#        run: |
+#          ip=`curl -sL http://ip.42.pl/raw`
+#          echo "server ip: $ip"
 
       - name: Checkout
         uses: actions/checkout@v3
