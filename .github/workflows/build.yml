@@ -87,7 +87,8 @@ jobs:
         if: ${{ env.commit }}
         working-directory: TVBoxOSC
         run: |
-          if ! grep -q "implementation('org.xwalk:xwalk_shared_library:23.53.589.4')" ./app/build.gradle; then
+          if ! grep -q "org.xwalk" ./app/build.gradle; then
+            echo 'copy library'
             cp -f ${{ github.workspace }}/actions/.github/scripts/crosswalk-shared-23.53.589.4.aar ./app/libs/crosswalk-shared-23.53.589.4.aar
             # lineNo=$(awk '/org.xwalk/{ print NR; exit }' ./app/build.gradle)
             sed -i "/org.xwalk/i\    implementation files('libs\\\\\\\\crosswalk-shared-23.53.589.4.aar')" ./app/build.gradle
