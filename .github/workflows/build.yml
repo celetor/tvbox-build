@@ -63,7 +63,7 @@ jobs:
         run: |
           echo "tag=$(git log --date=format:'%Y.%m%d.%H%M' --pretty=format:%cd ${{ env.commit_id }} -1)" >> $GITHUB_ENV
           echo "update_time=$(git log --date=format:'%Y/%m/%d %H:%M' --pretty=format:%cd ${{ env.commit_id }} -1)" >> $GITHUB_ENV
-          zip -q -x ".git/*" -r ${{ env.commit_id }}-source.zip .
+          zip -q -x ".git/*" -r ${{ matrix.userName }}_${{ env.commit_id }}_src.zip .
 
       - name: Add Sign Info
         if: ${{ env.commit }}
@@ -163,7 +163,7 @@ jobs:
           body_path: TVBoxOSC/Changelog.txt
           files: |
             TVBoxOSC/apk/*
-            TVBoxOSC/${{ env.commit_id }}-source.zip
+            TVBoxOSC/${{ matrix.userName }}_${{ env.commit_id }}_src.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
