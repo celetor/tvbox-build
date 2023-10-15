@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       arm64_support:
-        description: 'not support ijk decoder.'
+        description: 'arm64 is supported, but ijk decoder is not supported.'
         required: false
         type: boolean
 
