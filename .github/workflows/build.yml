@@ -193,5 +193,5 @@ jobs:
       - name: Upload App To Lanzou
         if: ${{ env.commit && env.ylogin }}
         run: |
-          python3 ${{ github.workspace }}/actions/.github/scripts/lzy_web.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id"
+          python3 ${{ github.workspace }}/actions/.github/scripts/lanzou-api.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id"
           echo "share address: https://wwi.lanzoup.com/b0dah3rlc  password:celetor"

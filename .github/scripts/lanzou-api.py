@@ -47,7 +47,7 @@ def login_by_cookie():
 # 上传文件
 def upload_file(file_dir, folder_id):
     file_name = os.path.basename(file_dir)
-    url_upload = "https://up.woozooo.com/fileup.php"
+    url_upload = f"https://up.woozooo.com/fileup.php?uid={cookie_ylogin}"
     headers['Referer'] = f'https://up.woozooo.com/mydisk.php?item=files&action=index&u={cookie_ylogin}'
     post_data = {
         "task": "1",
