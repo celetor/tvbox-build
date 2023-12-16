@@ -57,8 +57,10 @@ def upload_file(file_dir, folder_id):
     headers['Referer'] = f'https://up.woozooo.com/mydisk.php?item=files&action=index&u={cookie_ylogin}'
     post_data = {
         "task": "1",
-        "folder_id": f'{folder_id}',
+        "vie": "2",
+        "ve": "2",
         "id": "WU_FILE_0",
+        "folder_id_bb_n": f'{folder_id}',
         "name": file_name,
     }
     files = {'upload_file': (file_name, open(file_dir, "rb"), 'application/octet-stream')}
