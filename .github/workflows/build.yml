@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           path: actions
@@ -55,7 +55,6 @@ jobs:
         if: ${{ env.commit }}
         run: |
           git clone -b ${{ matrix.branchName }} ${{ matrix.repoUrl }} TVBoxOSC
-          # git checkout ${{ env.commit }}
 
       - name: Compress Source Code
         if: ${{ env.commit }}
@@ -135,12 +134,12 @@ jobs:
           for file in `find . -name "*.apk" -print`; do
             filename=$(basename "$file")
             if [[ $filename =~ "debug" ]] ; then
-              echo "忽略: $file"
+              echo "ignore: $file"
             elif [[ $filename =~ "release" ]] ; then
-              echo "移动并重命名: $file"
+              echo "move and rename: $file"
               mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
             else
-              echo "只移动: $file"
+              echo "only move: $file"
               mv "$file" apk/
             fi
           done
@@ -192,6 +191,4 @@ jobs:
 
       - name: Upload App To Lanzou
         if: ${{ env.commit && env.ylogin }}
-        run: |
-          python3 ${{ github.workspace }}/actions/.github/scripts/lanzou-api.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id"
-          echo "share address: https://wwi.lanzoup.com/b0dah3rlc  password:celetor"
+        run: python3 ${{ github.workspace }}/actions/.github/scripts/lanzou-api.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id" "${{ github.workspace }}/TVBoxOSC/Changelog.txt"
