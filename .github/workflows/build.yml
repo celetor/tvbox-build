@@ -2,7 +2,7 @@ name: Build
 
 on:
   schedule:
-    - cron: 10,40 0-15,23 * * *
+    - cron: 40 0,4,18,15 * * *
 #  push:
 #    branches:
 #      - main
@@ -23,9 +23,11 @@ jobs:
           - userName: q215613905
             repoUrl: https://github.com/q215613905/TVBoxOS
             branchName: main
+            javaVersion: 8
           - userName: takagen99
             repoUrl: https://github.com/takagen99/Box
             branchName: main
+            javaVersion: 17
     env:
       local_xwalk: ${{ secrets.LOCAL_XWALK }}
       # 登录蓝奏云后在控制台运行document.cookie
@@ -94,7 +96,7 @@ jobs:
           sed -i "/android:text=/c\\        android:text=\"v${{ env.tag }}\\\\n本软件只提供聚合展示功能，所有资源来自网上, 软件不参与任何制作, 上传, 储存, 下载等内容。 软件仅供学习参考, 请于安装后24小时内删除。\\\\n\\\\n打包分发请保留出处\\\\n${{ matrix.repoUrl }}\"" ./app/src/main/res/layout/dialog_about.xml
 
       - name: Env Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         if: ${{ env.commit }}
         with:
           path: |
@@ -114,7 +116,14 @@ jobs:
             sed -i "/jitpack.io/a\  maven { url 'https://celetor.github.io/crosswalk/releases/crosswalk/android/maven2' }" build.gradle
           fi
 
-      - name: Set up Gradle
+      - name: Setup JDK
+        if: ${{ env.commit }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.javaVersion }}
+
+      - name: Setup Gradle
         if: ${{ env.commit }}
         uses: gradle/gradle-build-action@v2
 
