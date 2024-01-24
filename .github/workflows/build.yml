@@ -187,6 +187,7 @@ jobs:
       - name: Commit And Push
         if: ${{ env.commit }}
         working-directory: actions
+        continue-on-error: true
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
