@@ -14,6 +14,6 @@ This repo relies on the following third-party projects:
 
 ## EPG
 - https://github.com/celetor/epg
-- http://diyp.112114.xyz
+- https://epg.112114.xyz
 - http://epg.51zmt.top:8000
 
