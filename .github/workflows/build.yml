@@ -137,7 +137,12 @@ jobs:
               echo "ignore: $file"
             elif [[ $filename =~ "release" ]] ; then
               echo "move and rename: $file"
-              mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
+              if [ "${{ matrix.userName }}" == "takagen99" ]; then
+                new_name=${$filename##*release}
+                mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}$new_name.apk
+              else
+                mv "$file" apk/TVBox_${{ matrix.userName }}_${{ env.tag }}.apk
+              fi
             else
               echo "only move: $file"
               mv "$file" apk/
