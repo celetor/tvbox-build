@@ -43,15 +43,13 @@ jobs:
           path: actions
 
       - name: Get The Lastest Commit
-        working-directory: actions
         run: |
-          git clone --depth 1 -b ${{ matrix.branchName }} ${{ matrix.repoUrl }} tmp_tvbox
-          cd tmp_tvbox
+          git clone --depth=1 -b ${{ matrix.branchName }} ${{ matrix.repoUrl }} TVBoxOSC
+          cd TVBoxOSC
           commit=`git log --pretty=format:"%H" |grep -o '[a-z0-9]\{40\}' |head -1`
-          cd ..
-          rm -rf tmp_tvbox
-          #commit=$(curl -sL ${{ secrets.PROXY_URL }}${{ matrix.repoUrl }}/commits/${{ matrix.branchName }} |grep -o '/commit/[a-z0-9]\+' |head -1 | cut -d\/ -f3)
+          #commit=$(curl -sL ${{ matrix.repoUrl }}/commits/${{ matrix.branchName }} |grep -o '/commit/[a-z0-9]\+' |head -1 | cut -d\/ -f3)
           echo "commit: $commit"
+          cd ../actions
           if ! grep -q "$commit" ./log/${{ matrix.userName }}.txt; then
             echo "commit=$commit" >> $GITHUB_ENV
             echo "commit_id=${commit:0:7}" >> $GITHUB_ENV
@@ -62,8 +60,10 @@ jobs:
 
       - name: Clone Source Code
         if: ${{ env.commit }}
+        working-directory: TVBoxOSC
         run: |
-          git clone -b ${{ matrix.branchName }} ${{ matrix.repoUrl }} TVBoxOSC
+          #git clone -b ${{ matrix.branchName }} ${{ matrix.repoUrl }} TVBoxOSC
+          git fetch --unshallow
 
       - name: Compress Source Code
         if: ${{ env.commit }}
