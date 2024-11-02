@@ -150,7 +150,7 @@ jobs:
           done
 
       - name: Write Update Changelog
-        if: ${{ env.commit && !inputs.rebuild }}
+        if: ${{ env.commit }}
         run: |
           cd actions
           # myLastCommit=`git log --oneline |grep -o '[a-z0-9]\{40\}' |head -1`
