@@ -107,7 +107,7 @@ jobs:
           fi
 
       - name: Setup JDK
-        if: ${{ env.commit }}
+        if: ${{ env.commit && matrix.javaVersion }}
         uses: actions/setup-java@v4
         with:
           distribution: temurin
