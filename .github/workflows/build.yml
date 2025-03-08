@@ -23,7 +23,6 @@ jobs:
           - userName: q215613905
             repoUrl: https://github.com/q215613905/TVBoxOS
             branchName: main
-            javaVersion: 8
           - userName: takagen99
             repoUrl: https://github.com/takagen99/Box
             branchName: main
