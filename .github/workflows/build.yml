@@ -21,7 +21,7 @@ jobs:
       matrix:
         include:
           - userName: q215613905
-            repoUrl: https://github.com/celetor/TVBoxOS
+            repoUrl: https://github.com/q215613905/TVBoxOS
             branchName: main
           - userName: takagen99
             repoUrl: https://github.com/takagen99/Box
@@ -104,6 +104,7 @@ jobs:
           else
             sed -i "/jitpack.io/a\  maven { url 'https://celetor.github.io/crosswalk/releases/crosswalk/android/maven2' }\n maven { url 'https://maven.aliyun.com/repository/jcenter' }" build.gradle
           fi
+          sed -i "/2048m --add-opens java.base/c\\org.gradle.jvmargs=-Xmx2048m --add-opens java.base/java.io=ALL-UNNAMED" ./gradle.properties
 
       - name: Setup JDK
         if: ${{ env.commit && matrix.javaVersion }}
