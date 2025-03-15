@@ -21,7 +21,7 @@ jobs:
       matrix:
         include:
           - userName: q215613905
-            repoUrl: https://github.com/q215613905/TVBoxOS
+            repoUrl: https://github.com/celetor/TVBoxOS
             branchName: main
           - userName: takagen99
             repoUrl: https://github.com/takagen99/Box
