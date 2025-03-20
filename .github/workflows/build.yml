@@ -106,7 +106,7 @@ jobs:
           fi
           if [ "${{ matrix.userName }}" == "takagen99" ]; then
             echo "fix ApiConfig.java"
-            sed -i "/LOG./c\\//LOG.i" ./app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
+            #sed -i "/LOG./c\\//LOG.i" ./app/src/main/java/com/github/tvbox/osc/api/ApiConfig.java
           else
             echo "fix gradle.properties"
             sed -i "/2048m --add-opens java.base/c\\org.gradle.jvmargs=-Xmx2048m --add-opens java.base/java.io=ALL-UNNAMED" ./gradle.properties
