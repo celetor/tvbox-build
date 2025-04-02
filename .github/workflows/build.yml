@@ -110,7 +110,8 @@ jobs:
           else
             echo "fix gradle.properties"
             sed -i "/2048m --add-opens java.base/c\\org.gradle.jvmargs=-Xmx2048m --add-opens java.base/java.io=ALL-UNNAMED" ./gradle.properties
-          fi 
+          fi
+          cp -f ${{ github.workspace }}/actions/.github/scripts/local.properties ./pyramid/local.properties
           
       - name: Setup JDK
         if: ${{ env.commit && matrix.javaVersion }}
