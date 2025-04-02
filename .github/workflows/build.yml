@@ -110,7 +110,9 @@ jobs:
           else
             echo "fix gradle.properties"
             sed -i "/2048m --add-opens java.base/c\\org.gradle.jvmargs=-Xmx2048m --add-opens java.base/java.io=ALL-UNNAMED" ./gradle.properties
-          fi 
+          fi
+          cp -f ${{ github.workspace }}/actions/.github/scripts/local.properties ./local.properties
+          sed -i "/buildPython/c\\//buildPython" ./pyramid/build.gradle
           
       - name: Setup JDK
         if: ${{ env.commit && matrix.javaVersion }}
@@ -123,6 +125,12 @@ jobs:
         if: ${{ env.commit }}
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Setup Python
+        if: ${{ env.commit }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+    
       - name: Build With Gradle
         if: ${{ env.commit }}
         working-directory: TVBoxOSC
@@ -201,4 +209,6 @@ jobs:
 
       - name: Upload App To Lanzou
         if: ${{ env.commit && env.ylogin && !inputs.rebuild }}
-        run: python3 ${{ github.workspace }}/actions/.github/scripts/lanzou-api.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id" "${{ github.workspace }}/TVBoxOSC/desc.txt"
+        run: |
+          pip install requests
+          python ${{ github.workspace }}/actions/.github/scripts/lanzou-api.py "${{ github.workspace }}/TVBoxOSC/apk/" "$lanzou_folder_id" "${{ github.workspace }}/TVBoxOSC/desc.txt"
