@@ -112,6 +112,7 @@ jobs:
             sed -i "/2048m --add-opens java.base/c\\org.gradle.jvmargs=-Xmx2048m --add-opens java.base/java.io=ALL-UNNAMED" ./gradle.properties
           fi
           cp -f ${{ github.workspace }}/actions/.github/scripts/local.properties ./local.properties
+          sed -i "/buildPython/c\\//buildPython" ./pyramid/build.gradle
           
       - name: Setup JDK
         if: ${{ env.commit && matrix.javaVersion }}
