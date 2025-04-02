@@ -2,7 +2,7 @@
 # 蓝奏云上传文件
 # Author: https://github.com/celetor
 # Date: 2023-12-16
-os.system(f'pip install requests')
+os.system('pip install requests')
 import logging
 import os
 import sys
