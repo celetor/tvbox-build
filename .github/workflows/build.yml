@@ -124,6 +124,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Setup Python
+        if: ${{ env.commit }}
         uses: actions/setup-python@v5
         with:
           python-version: '3.8'
